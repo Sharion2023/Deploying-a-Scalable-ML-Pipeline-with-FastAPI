@@ -22,7 +22,6 @@ def train_model(X_train, y_train):
     model = RandomForestClassifier(random_state = 23) 
     model.fit(X_train, y_train)
     return model
-    pass
 
 
 def compute_model_metrics(y, preds):
@@ -61,8 +60,9 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    # TODO: implement the function
-    pass
+    preds = model.predict(X)
+    return preds
+    
 
 def save_model(model, path):
     """ Serializes model to a file.
@@ -74,13 +74,14 @@ def save_model(model, path):
     path : str
         Path to save pickle file.
     """
-    # TODO: implement the function
-    pass
+    with open(path, "wb") as f:
+        pickle.dump(model, f)
 
 def load_model(path):
     """ Loads pickle file from `path` and returns it."""
-    # TODO: implement the function
-    pass
+    with open(path, "rb") as f:
+        pickle.load(f)
+    return model
 
 
 def performance_on_categorical_slice(
